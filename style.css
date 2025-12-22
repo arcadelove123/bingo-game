@@ -1,0 +1,119 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(176, 139, 255);
+}
+
+#title{
+    text-align: center;
+    font-size: 40px;
+}
+
+#start{
+    display: block;
+    margin: 20px auto;
+    height: 50px;
+    width: 406px;
+    border-width: 3px;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.container1{
+    display: flex;
+    flex-wrap: wrap;
+    width: 406px;
+    gap: 2px;
+    margin: 50px auto 0 auto;
+}
+
+.box{
+    display: flex;
+    height: 100px;
+    width: 100px;
+    border: 3px solid black;
+    align-items: center;
+    justify-content: center;
+}
+
+.container2{
+    display: flex;
+    flex-wrap: wrap;
+    width: 406px;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+#input{
+    display: block;
+    height: 50px;
+    width: 300px;
+    font-size: 30px;
+    border: 3px solid black;
+    resize: none;
+    text-align: center;
+}
+
+#set{
+    width: 96px;
+    font-size: 20px;
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+#word{
+    display: none;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 406px;
+    border: 3px solid black;
+    font-size: 30px;
+}
+
+#words{
+    transform: translatey(-5px);
+    font-size: 40px;
+}
+
+#close{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    margin-left: 360px;
+    border: 3px solid black;
+    font-size: 20px;
+    background: transparent;
+}
+
+#warning{
+    display: none;
+    margin: 20px auto;
+    background-color: rgba(255, 0, 0, 0.15);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 406px;
+    border: 3px solid black;
+}
+
+#content{
+    transform: translatey(-3px) translateX(-10px);
+    font-size: 15px;
+}
+
+#close1{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    margin-left: 360px;
+    border: 3px solid black;
+    font-size: 20px;
+    background: transparent;
+}
