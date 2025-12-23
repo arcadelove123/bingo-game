@@ -1,6 +1,7 @@
 let r = 176;
 let g = 139;
 let b = 255;
+let wordRate = 0;
 let directionC = 1;
 let wordInterval = null;
 let fourLetterWords = [];
@@ -12,9 +13,10 @@ const body= document.body;
 const set = document.getElementById("set");
 const input = document.getElementById("input");
 const start = document.getElementById("start");
+const increase = document.getElementById("increase")
 const close = document.getElementById("close");
 const close1 = document.getElementById("close1");
-const word = document.getElementById("word");
+const wordi = document.getElementById("word");
 const wordDisplay = document.getElementById("words");
 const warning = document.getElementById("warning");
 const content = document.getElementById("content");
@@ -92,28 +94,49 @@ start.addEventListener("click", () => {
 
     if (wordInterval) return;
 
-    word.style.display = "flex";
+    let wordlist = assignList();
+
+    wordi.style.display = "flex";
     wordInterval = setInterval(() => {
-        const word = wordGenerator();
+        const word = wordGenerator(wordlist);
+        
+        for (let key in wordlist) {
+            if (wordlist[key] === word) {
+        delete wordlist[key];
+        }
+    }
+
         wordDisplay.innerText = word.split("").join(" ");
+
         boxes.forEach(box => {
             if (box.innerText === word) {
                 box.style.backgroundColor = "limegreen";
                 box.classList.add("correct");
             }
         })
+
         if (bingoCheck()) {
             clearInterval(wordInterval);
             wordInterval = null;
-            alert("Bingo! You've completed the game.");
+            setTimeout(() => {
+                alert("Bingo! You've completed the game.");
+        }, 0);
         }
     }, 2000);
 });
 
-function wordGenerator(){
+increase.addEventListener("click", () => {
+    wordRate++
+})
+
+function wordGenerator(list){
     let num = Math.floor(Math.random() * fourLetterWords.length)
     let word = fourLetterWords[num];
     fourLetterWords.splice(num, 1);
+
+    if (getRandomBit() == 1) {
+        word = list["box" + Math.floor(Math.random() * 16 + 1)]
+    }
 
     return word;
 }
@@ -129,7 +152,7 @@ function redundantCheck(word){
 }
 
 close.addEventListener("click", () => {
-    word.style.display = "none";
+    wordi.style.display = "none";
     clearInterval(wordInterval);
     wordInterval = null;
 });
@@ -153,4 +176,17 @@ function bingoCheck(){
     } else {
         return false;
     }
+}
+
+function assignList() {
+    let boxes = {};
+    for (let i = 1; i <= 16; i++) {
+        boxes["box" + i] = document.getElementById(i).innerHTML;
+    }
+    return boxes;
+}
+
+function getRandomBit() {
+    let probability = Math.min(wordRate * 0.1, 1);
+    return Math.random() < probability ? 1 : 0;
 }
